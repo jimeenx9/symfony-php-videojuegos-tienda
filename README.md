@@ -47,14 +47,3 @@ Usuario:
 
 
 ---
-
-# 6️⃣ Flujo correcto para subir
-
-```bash
-git init
-git add .
-git commit -m "Initial commit - Symfony mini ecommerce"
-git branch -M main
-git remote add origin https://github.com/tuusuario/symfony-videojuegos-tienda.git
-git push -u origin main
-```
