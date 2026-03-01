@@ -1,0 +1,71 @@
+{% extends 'layout.html.twig' %}
+
+{% block title %}Categorías{% endblock %}
+
+{% block contenido %}
+<div class="container mt-4">
+
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <h2>Listado de Categorías</h2>
+
+        {% if app.user and 'ROLE_ADMIN' in app.user.roles %}
+            <a href="{{ path('categorias_new') }}"
+               class="btn btn-primary">
+                Nueva categoría
+            </a>
+        {% endif %}
+    </div>
+
+    {% if categorias is empty %}
+        <div class="alert alert-info">
+            No hay categorías registradas.
+        </div>
+    {% else %}
+
+        <div class="card shadow">
+            <table class="table table-hover mb-0 align-middle">
+                <thead class="table-dark">
+                    <tr>
+                        <th>Nombre</th>
+                        {% if app.user and 'ROLE_ADMIN' in app.user.roles %}
+                            <th width="120">Editar</th>
+                            <th width="120">Eliminar</th>
+                        {% endif %}
+                    </tr>
+                </thead>
+
+                <tbody>
+                {% for categoria in categorias %}
+                    <tr>
+                        <td>
+                            <strong>{{ categoria.nombre }}</strong>
+                        </td>
+
+                        {% if app.user and 'ROLE_ADMIN' in app.user.roles %}
+                            <td>
+                                <a href="{{ path('categorias_edit', {id: categoria.id}) }}"
+                                   class="btn btn-sm btn-warning">
+                                    Editar
+                                </a>
+                            </td>
+
+                            <td>
+                                <form method="post"
+                                      action="{{ path('categorias_delete', {id: categoria.id}) }}"
+                                      onsubmit="return confirm('¿Seguro que quieres borrar esta categoría?');">
+                                    <button class="btn btn-sm btn-danger">
+                                        Eliminar
+                                    </button>
+                                </form>
+                            </td>
+                        {% endif %}
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
+
+    {% endif %}
+
+</div>
+{% endblock %}

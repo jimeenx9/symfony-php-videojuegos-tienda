@@ -1,0 +1,25 @@
+http://127.0.0.1:8000/
+http://127.0.0.1:8000/categoria/1
+http://127.0.0.1:8000/categorias
+
+http://127.0.0.1:8000/articulos/new
+http://127.0.0.1:8000/articulos/edit/1
+http://127.0.0.1:8000/articulos/delete/1
+
+http://127.0.0.1:8000/categorias/new
+http://127.0.0.1:8000/categorias/edit/1
+http://127.0.0.1:8000/categorias/delete/1
+
+http://127.0.0.1:8000/login
+http://127.0.0.1:8000/logout
+http://127.0.0.1:8000/registro
+http://127.0.0.1:8000/perfil/alberto
+http://127.0.0.1:8000/changepassword/alberto
+
+http://127.0.0.1:8000/carrito
+http://127.0.0.1:8000/carrito/add/1
+http://127.0.0.1:8000/carrito_delete/1
+http://127.0.0.1:8000/pedido
+http://127.0.0.1:8000/fin_pedido
+
+php bin/console doctrine:query:sql "SELECT id, username, roles, nombre, email FROM usuario;"

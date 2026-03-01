@@ -1,0 +1,23 @@
+{% extends 'layout.html.twig' %}
+
+{% block title %}Stock insuficiente{% endblock %}
+
+{% block contenido %}
+<div class="container mt-4">
+
+    <div class="alert alert-danger">
+        <h4>Stock insuficiente</h4>
+
+        {% if articulo %}
+            No hay stock suficiente para <strong>{{ articulo.nombre }}</strong>.
+        {% else %}
+            Has pedido {{ cantidad }} y quedan {{ articulo.stock }}.
+        {% endif %}
+    </div>
+
+    <a href="{{ path('carrito') }}" class="btn btn-secondary">
+        Volver al carrito
+    </a>
+
+</div>
+{% endblock %}

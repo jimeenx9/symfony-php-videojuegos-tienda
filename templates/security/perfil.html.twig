@@ -1,0 +1,60 @@
+{% extends 'layout.html.twig' %}
+
+{% block title %}Perfil{% endblock %}
+
+{% block contenido %}
+<div class="container">
+    <div class="row">
+        <div class="col-md-3"></div>
+
+        <div class="col-md-6">
+
+            <h3>Perfil de {{ usuario.username }}</h3>
+
+            <form method="post">
+
+                <!-- USERNAME -->
+                <div class="mb-3">
+                    <label class="form-label">Username</label>
+                    <input type="text"
+                           value="{{ usuario.username }}"
+                           class="form-control"
+                           readonly>
+                </div>
+
+                <!-- PASSWORD -->
+                <div class="mb-3">
+                    <a href="{{ path('app_changepassword', {username: usuario.username}) }}">
+                        Cambiar contraseña
+                    </a>
+                </div>
+
+                <!-- NOMBRE -->
+                <div class="mb-3">
+                    <label class="form-label">Nombre</label>
+                    <input type="text"
+                           name="nombre"
+                           value="{{ usuario.nombre }}"
+                           class="form-control">
+                </div>
+
+                <!-- EMAIL -->
+                <div class="mb-3">
+                    <label class="form-label">Email</label>
+                    <input type="email"
+                           name="email"
+                           value="{{ usuario.email }}"
+                           class="form-control">
+                </div>
+
+                <button type="submit"
+                        class="btn btn-lg btn-primary w-100">
+                    Guardar cambios
+                </button>
+
+            </form>
+
+        </div>
+    </div>
+</div>
+{% endblock %}

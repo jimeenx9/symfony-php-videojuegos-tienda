@@ -1,0 +1,87 @@
+{% extends 'layout.html.twig' %}
+
+{% block title %}Carrito{% endblock %}
+
+{% block contenido %}
+<div class="container mt-4">
+
+    <h2>Carrito de la compra</h2>
+    <br>
+
+    {% if articulos is empty %}
+        <div class="alert alert-info">
+            No hay productos en el carrito.
+        </div>
+    {% else %}
+
+    <table class="table table-bordered align-middle">
+        <thead class="table-dark">
+            <tr>
+                <th>Nombre</th>
+                <th>Precio</th>
+                <th width="180">Cantidad</th>
+                <th>Subtotal</th>
+                <th></th>
+            </tr>
+        </thead>
+
+        <tbody>
+        {% for item in articulos %}
+            <tr>
+                <td>{{ item.articulo.nombre }}</td>
+
+                <td>{{ item.articulo.precioFinal }} €</td>
+
+                <td>
+                    <div class="d-flex align-items-center">
+
+                        <a href="{{ path('carrito_update', {id: item.articulo.id, accion: 'restar'}) }}"
+                           class="btn btn-sm btn-outline-secondary me-2">
+                            −
+                        </a>
+
+                        <span class="fw-bold">
+                            {{ item.cantidad }}
+                        </span>
+
+                        <a href="{{ path('carrito_update', {id: item.articulo.id, accion: 'sumar'}) }}"
+                           class="btn btn-sm btn-outline-secondary ms-2">
+                            +
+                        </a>
+
+                    </div>
+                </td>
+
+                <td>
+                    {{ (item.articulo.precioFinal * item.cantidad)|number_format(2) }} €
+                </td>
+
+                <td>
+                    <a href="{{ path('carrito_delete', {id: item.articulo.id}) }}"
+                       class="btn btn-sm btn-danger">
+                        Eliminar
+                    </a>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <div class="text-end">
+        <h4>Total: {{ total|number_format(2) }} €</h4>
+    </div>
+
+    <div class="d-flex justify-content-between mt-3">
+        <a href="{{ path('inicio') }}" class="btn btn-secondary">
+            Seguir comprando
+        </a>
+
+        <a href="{{ path('pedido') }}" class="btn btn-success">
+            Confirmar pedido
+        </a>
+    </div>
+
+    {% endif %}
+
+</div>
+{% endblock %}

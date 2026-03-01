@@ -1,0 +1,21 @@
+# Symfony
+/var/
+/vendor/
+.env.local
+.env.test
+.env.*.local
+
+# IDE
+/.idea/
+/.vscode/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Database
+*.sqlite
+*.db
+
+# Logs
+*.log
